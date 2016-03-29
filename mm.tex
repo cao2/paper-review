@@ -1,0 +1,262 @@
+
+
+\documentclass[conference]{IEEEtran}
+\usepackage{blindtext, graphicx}
+\usepackage{scrextend}
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+
+\title{Paper Review}
+
+\author{\IEEEauthorblockN{Yuting Cao}
+\IEEEauthorblockA{University of South Florida\\
+Email: cao2@mail.usf.edu}
+}
+\maketitle
+
+
+\begin{abstract}
+Briefly summarize all the papers I read about post silicon validation.
+\end{abstract}
+
+\section{Cant See the Forest for the Trees: State Restoration?s Limitations in Post-silicon Trace Signal Selection ~\cite{forestMa}}
+This paper proposed the the signal selection standard SSR(State Restoration Ratio) is not suitable for evaluating trace signal quality. It should be replaced by metric that allows good high-level behavioral coverage.
+
+SRR measures the number of design states reconstructed from the signals observed. SRR= number of signals observed and restored / number of observed signals. The reason why SSR is not optimal is because 
+\begin{itemize}
+\item SRR treat all signals equally. but some signals are more important than others
+\item SRR favors big arrays, which may not be useful for debugging at all
+\end{itemize}
+
+This paper proposed a new metric that is assertion coverage, as how many assertion are satisfied by the observed signals. The drawback it will introduce is the subjectivity and incompleteness. \(WHY??\)
+
+This paper also introduced a new signal selection algorithm inspired from Google's PaperRank system. This algorithm is based on the connectivity of each instance, and by that find the most important signals. One thing is that it will avoid inclusion of entire array but select only relevant signals in stead. With experiment done with different test bench, it's proven that Paperbank algorithm allows much higher assertion coverage than SSR algorithm's selected signals.
+
+One drawback of the Paperband algorithm is that it can't cover system-level assertions, because they don't trace interface signals. The phrase here is very odd, \"non of the algorithms are able to cover system level assertions, since they do not trace interface signals. This illustrates that optimizing for a functional coverage metric like assertion coverage will lead to interface signals being emphasized over internal signals. \" 	VERY CONFUSING.!!!!
+
+CONCLUSION: This paper compared algorithm of Paperbank on netlist, PaperBank on RTL, SigSeT(SRR maximizing algorithm) with different metric including SRR, behavioral coverage, assertion coverage. The result shows that signal set with good SRR usually have less behavioral coverage and assertion coverage. The PaperBank on RTL model turns out to be the best algorithm for better debugging. 
+
+I don't think this algorithm is fit for my research since there are not much attention on communication signals. 
+
+
+
+
+\section{SYSTEM-LEVEL TRACE SIGNAL SELECTION FOR POST-SILICON DEBUG USING LINEAR PROGRAMMING}
+This paper propose to automate trace signal selection instead of manual selection due to the increasing complexity of the system. It use the functional coverage as a metric and choose the low-level signals that produce a good coverage. And gradually refine the solution to allow the best behavioral coverage. 
+
+This paper focus on the communications between IPs and try to maximize the coverage of each protocol messages.
+
+The algorithm proposed in this paper is mainly protocol based.  As showed in ~\ref{procedure}, this algorithm 
+\begin{itemize}
+\item will first define a family of protocol in an understandable format. then decompose all messages in protocol into a messages contain only one data filed. 
+\item For each Channel, form a set of messages that it covers
+\item Using a linear program to find a set of signals to trace that allows the maximum frequency coverage. see Figure.~\ref{linear}
+\item For high reward solutions, calculate heuristic intervals. See Figure.~\ref{interval}
+\item Select best solution with small I/\(1+FC\) where I is interval score and FC is frequency coverage.
+\end{itemize}
+
+When find bugs and we want to refine the select signals to enable better root cause finding. There are several ways we can use.
+\begin{itemize}
+\item Block-Specific Views. For possible root cause blocks, assign messages in protocol family into each block and apply coverage-interval algorithm to them
+\item Control View
+
+As referred in Fig.~\ref{control}, we define all protocols and then find local and external decision points. Local decision points refers the messages with conditions. External decision point is messages that have same sender, data fields but different receiver. Calculating the advantage of the external decision point is NOT VERY CLEAR FOR ME YET. 
+\end{itemize}
+
+
+\begin{figure}[!ht]
+\caption{Step-by-step flow of global view and block view selection method}
+\label{procedure}
+\centering
+    \includegraphics[width=0.5\textwidth]{proc}
+\end{figure}
+\begin{figure}[!ht]
+
+\caption{Linear Program Formulation}
+\label{linear}
+\centering
+    \includegraphics[width=0.5\textwidth]{lin}
+\end{figure}
+
+\begin{figure}
+\caption{Spacing example for a nine message sequence with four messages covered. Red circles indicate message is observable}
+\label{interval}
+\centering
+    \includegraphics[width=0.5\textwidth]{inter}
+\end{figure}
+
+
+\begin{figure}
+\caption{Step-by-step flow of control view selection method}
+\label{control}
+\centering
+    \includegraphics[width=0.4\textwidth]{control}
+\end{figure}
+
+
+
+
+\section{On the cusp of a validation wall~\cite{validationWall}}
+This paper goes through the definition of silicon validation and reason why it's important, together with the current techniques used for pre and post silicon validation.
+
+Validation is the activity of ensuring a product satisfies its reference specifications, runs with relevant software and hardware, and meets user expectations.
+
+Numbers of processor bug are growing for every new generation and the bugs are becoming more diverse and complex. which makes silicon testing even harder.
+
+Effective validation needs
+\begin{itemize}
+\item modular validation (virtual platform) :
+
+virtual platform helps find problems before post silicon validation, forcing the combination of pre and post silicon validation. And also enables early software development on the virtual platform.
+
+Formal verification vs Dynamic verification
+\item good analog and simulation.
+\item test generator
+
+To ensure all cases covered by test generator in stead of single area.
+\item coverage measurement
+\item assisted insertion of test
+\item debugging features.
+\end{itemize}
+
+What I learned:
+Post silicon validation is very complex and effort intensive compared to pre-silicon validation. Not very automated, which is needed in scholar field.
+
+
+\section{Validation of SoC Firmware~Hardware Flows: Chanllenges and Solution Directions ~\cite{fw}}
+\begin{itemize}
+	\item Challenges of SoC firmware hardware flows
+	\item specification error found late in product life-cycle.
+		goal: analyze architecture specificaion
+		methods: 1. executable specification written in programing language or formalism. (SystemC)
+				question?paper said it?s not good because ?effort to develop executable specification is too high for adoption by the 						architecture team. "
+				2. formal-specification language. (Proemela)
+
+	\item stand alone FW or HW validation is problematic
+		goal: co-validation. 
+		methods: Do FW validation in the early stage by using a virtual platform of the HW as a development environment for FW. Start FW 			development simultaneously with HW development, to start the validation effort early.
+
+	\item distribution of flows across many IPs and subsystem. Each flow has its own functionality.
+		goal: need to separate concerns, allow better modularity in validation.
+		methods: Design for verification
+				(A little confused)
+\end{itemize}
+
+\section{Debugging Multi-Core System-on-Chip}
+
+\begin{itemize}	
+\item Introduction
+		Design of an SOC: slowly decrease the abstraction level by level, adding details iteratively until it's ready for fabrication.
+						  Each level the system will be verified using verification technique.
+\item Why debug is difficult
+	\begin{enumerate}
+	\item Limited internal observability: data volume too big, can't be all recorded
+	\item Asynchronicity and Consistent Global State: Different clock frequency between IPs
+			globally-asynchronous locally synchronous design style: valid-accept handshake 
+			global state sampled at greatest common divisor of frequencies
+	\item Non-Determinism and Multiple Traces
+			non determinism of shared slave create faulty traces
+	\end{enumerate}			
+\item Debugging an SoC
+		3 types of errors:
+		\begin {enumerate}
+		\item Within a trace: permanent/transient error. (cause error for all following states )
+		\item  Between traces: constant when occurs in every run (deterministic) / intermittent(non-deterministic)
+		\item  Between systems: intrusive (changes the behavior of the system -probe effect)
+		\item Debugging process:
+			graph 5.9 b
+		\end{enumerate}
+\item Debug Methods
+		Properties:
+			\begin {enumerate}
+			\item structural abstraction: which part of system to observe within one abstraction level, at what granularity
+			\item temporal abstraction: what and how often we observe
+			\item behavioral abstraction: what logical function is executed by a hw module
+			\item data abstraction: how we interpret data
+			scope is combination of structural and temporal abstraction
+			\end{enumerate}
+		Existing debug methods:
+			\begin {enumerate}
+			\item physical and optical debug: non-intrusive, lowest level of abstraction
+			 	can only access wires close to the surface due to metal layers
+			\item logical debug: built in support (design for debug DfD) to increase internal observability and controllability
+			 	tradeoff b/w real-time behavior <-> amount of state inspected
+			 	examples that address problems caused by asynchronicity, inconsistency of global states , non-determinism or multiple traces
+					\begin {enumerate}
+			 		\item Latch Divergence Analysis: running a cpu many times, compare right traces and wrong traces
+			 			easily automated. doesn't distinguish noise in substate due to intermittent errors
+			 		\item Deterministic Replay
+			 			record non deterministic order and force deterministic
+			 			A lot of specific method that I don't understand now
+			 		\item Use of Abstraction for Debug
+			 			distinguish b/w inter-process communication and intra-process computation. Allows filtering only useful info
+					\end{enumerate}
+			\item future research need
+				debug method for parallel software and hw
+			 \end{enumerate}	 	
+\end{itemize}		
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+\bibliography{bib}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{biography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{picture}}]{John Doe}
+\blindtext
+\end{IEEEbiography}
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+
+% that's all folks
+\end{document}
+
+
