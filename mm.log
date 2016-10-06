@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  24 MAR 2016 23:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  25 SEP 2016 19:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -149,6 +149,14 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen117
 \Gin@req@width=\dimen118
 )
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2014/04/23 v1.1a Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 137.
+)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrextend.sty
 Package: scrextend 2013/12/19 v3.12 KOMA-Script KOMA-Script package (extend oth
 er classes with features of KOMA-Script classes)
@@ -170,18 +178,18 @@ Package scrlfile, 2013/12/19 v3.12 KOMA-Script package (loading files)
 )))) (./mm.aux)
 \openout1 = `mm.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
 
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -244,72 +252,110 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+
+LaTeX Warning: Citation `mammo2015post' on page 1 undefined on input line 24.
+
+
+LaTeX Warning: Reference `systemoverview' on page 1 undefined on input line 29.
+
+
+<systemoverview.png, id=1, 1068.99374pt x 654.445pt>
+File: systemoverview.png Graphic file (type png)
+ <use systemoverview.png>
+Package pdftex.def Info: systemoverview.png used on input line 31.
+(pdftex.def)             Requested size: 258.0pt x 157.94878pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 31--33
+[][] 
+ []
+
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 29.
+(Font)              <7> on input line 42.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 29.
+(Font)              <5> on input line 42.
+[1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
-LaTeX Warning: Reference `control' on page 1 undefined on input line 65.
-
-<proc.pdf, id=1, 525.965pt x 629.35126pt>
+ <./systemoverview.png>] <proc.pdf, id=15, 525.965pt x 629.35126pt>
 File: proc.pdf Graphic file (type pdf)
  <use proc.pdf>
-Package pdftex.def Info: proc.pdf used on input line 73.
+Package pdftex.def Info: proc.pdf used on input line 86.
 (pdftex.def)             Requested size: 258.0pt x 308.72092pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 73--74
+Overfull \hbox (6.0pt too wide) in paragraph at lines 86--87
  [][] 
  []
 
-<lin.pdf, id=3, 483.8075pt x 232.87pt>
+<lin.pdf, id=16, 483.8075pt x 232.87pt>
 File: lin.pdf Graphic file (type pdf)
  <use lin.pdf>
-Package pdftex.def Info: lin.pdf used on input line 80.
+Package pdftex.def Info: lin.pdf used on input line 93.
 (pdftex.def)             Requested size: 258.0pt x 124.18802pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 80--81
+Overfull \hbox (6.0pt too wide) in paragraph at lines 93--94
  [][] 
  []
 
-<inter.pdf, id=4, 469.755pt x 271.0125pt>
+<inter.pdf, id=17, 469.755pt x 271.0125pt>
 File: inter.pdf Graphic file (type pdf)
  <use inter.pdf>
-Package pdftex.def Info: inter.pdf used on input line 87.
+Package pdftex.def Info: inter.pdf used on input line 100.
 (pdftex.def)             Requested size: 258.0pt x 148.84642pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 87--88
+Overfull \hbox (6.0pt too wide) in paragraph at lines 100--101
  [][] 
  []
 
-<control.pdf, id=5, 293.095pt x 377.41pt>
+<control.pdf, id=18, 293.095pt x 377.41pt>
 File: control.pdf Graphic file (type pdf)
  <use control.pdf>
-Package pdftex.def Info: control.pdf used on input line 95.
+Package pdftex.def Info: control.pdf used on input line 108.
 (pdftex.def)             Requested size: 206.39685pt x 265.76886pt.
- [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+ [2 <./proc.pdf> <./lin.pdf> <./inter.pdf>] <cftss.pdf, id=25, 552.0625pt x 127
+.47626pt>
+File: cftss.pdf Graphic file (type pdf)
+
+<use cftss.pdf>
+Package pdftex.def Info: cftss.pdf used on input line 196.
+(pdftex.def)             Requested size: 206.39685pt x 47.65953pt.
+ <comp.pdf, id=26, 734.745pt x 525.965pt>
+File: comp.pdf Graphic file (type pdf)
+ <use comp.pdf>
+Package pdftex.def Info: comp.pdf used on input line 205.
+(pdftex.def)             Requested size: 206.39685pt x 147.74269pt.
+
+<bug.pdf, id=27, 839.135pt x 1033.8625pt>
+File: bug.pdf Graphic file (type pdf)
+ <use bug.pdf>
+Package pdftex.def Info: bug.pdf used on input line 213.
+(pdftex.def)             Requested size: 206.39685pt x 254.2845pt.
+ [3 <./control.pdf> <./cftss.pdf>] <appr.pdf, id=33, 1104.125pt x 503.8825pt>
+File: appr.pdf Graphic file (type pdf)
+ <use appr.pdf>
+Package pdftex.def Info: appr.pdf used on input line 243.
+(pdftex.def)             Requested size: 258.0pt x 117.74348pt.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 243--244
+ [][] 
+ []
 
 
-]
-Underfull \vbox (badness 2173) has occurred while \output is active []
-
- [2 <./proc.pdf> <./lin.pdf> <./inter.pdf> <./control.pdf>]
-Underfull \hbox (badness 3942) in paragraph at lines 156--159
+Underfull \hbox (badness 3942) in paragraph at lines 255--258
 \OT1/ptm/m/n/10 fer-ent clock fre-quency be-tween IPs globally-
  []
 
 
-Underfull \hbox (badness 1728) in paragraph at lines 156--159
+Underfull \hbox (badness 1728) in paragraph at lines 255--258
 \OT1/ptm/m/n/10 asynchronous lo-cally syn-chronous de-sign style:
  []
 
 
-Underfull \hbox (badness 1371) in paragraph at lines 156--159
+Underfull \hbox (badness 1371) in paragraph at lines 255--258
 \OT1/ptm/m/n/10 valid-accept hand-shake global state sam-pled at
  []
 
-(./mm.bbl)
-** WARNING: \IEEEbiography is locked out when in conference mode (line 240).
+[4 <./comp.pdf> <./bug.pdf> <./appr.pdf>] (./mm.bbl)
+** WARNING: \IEEEbiography is locked out when in conference mode (line 308).
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -321,7 +367,9 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3] (./mm.aux)
+[5
+
+] (./mm.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -330,13 +378,13 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 2941 strings out of 493117
- 48345 string characters out of 6135433
- 130501 words of memory out of 5000000
- 6381 multiletter control sequences out of 15000+600000
+ 3018 strings out of 493117
+ 49487 string characters out of 6135433
+ 130464 words of memory out of 5000000
+ 6448 multiletter control sequences out of 15000+600000
  34114 words of font info for 63 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 47i,8n,37p,479b,286s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 47i,9n,37p,599b,389s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
 xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
@@ -345,10 +393,10 @@ e/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/tex
 mf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2014/texmf-dist/f
 onts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on mm.pdf (3 pages, 196126 bytes).
+Output written on mm.pdf (5 pages, 1031301 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
- 31 compressed objects within 1 object stream
+ 68 PDF objects out of 1000 (max. 8388607)
+ 35 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

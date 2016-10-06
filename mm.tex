@@ -2,6 +2,7 @@
 
 \documentclass[conference]{IEEEtran}
 \usepackage{blindtext, graphicx}
+\usepackage{color}
 \usepackage{scrextend}
 \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -20,6 +21,28 @@ Email: cao2@mail.usf.edu}
 \begin{abstract}
 Briefly summarize all the papers I read about post silicon validation.
 \end{abstract}
+
+
+\section{probablisitic bus-masking analysis for post-silicon tests in microprocessor verification}
+Provide an efficient, static bug-masking analysisi solution BugMAPI that tracks the information flow in a 
+test program and estimates the probability that bugs go undetected by the checking mechanisms in place
+in the post silicon platform.
+This one I thought can b e used as heuristic for singal selection, but turned out to be helpful for test generator.
+
+\section{Post-silicon validation of mulrtiprocessor memory consisitency~\cite{mammo2015post}}
+monitor the system memory acccess information by changing a small portion of the l1 cache and an extra samll hardware logic.
+The logged information will then be transfered to central memory to conduct analysis process.
+The method used to detect memory error is by constructing a graph representation of memory interactions, an cycle indicates an error.
+
+Compared to simulation based dynamic analysis, this is faster but less accurate.
+
+Two limitations: lack of patches for mask-causing store instructions and false negatives in analysis.
+System overview is shown in Figure.~\ref{systemoverview}
+\begin{figure}
+\includegraphics[width=0.5\textwidth]{systemoverview.png}
+\caption{System Overview. Each core is modified to track memory accesses.A portion of the L1 caches are temporarily reserved for logging memory accesses. A store counter is attached to each cache line to track the order of writes to the line. Finally, the analysis of the logged data is performed in software, which can be carried out on a processor/host available for the task.}
+\label{systemoverview}
+\end{figure}
 
 \section{Cant See the Forest for the Trees: State Restoration?s Limitations in Post-silicon Trace Signal Selection ~\cite{forestMa}}
 This paper proposed the the signal selection standard SSR(State Restoration Ratio) is not suitable for evaluating trace signal quality. It should be replaced by metric that allows good high-level behavioral coverage.
@@ -144,8 +167,94 @@ Post silicon validation is very complex and effort intensive compared to pre-sil
 				(A little confused)
 \end{itemize}
 
-\section{Debugging Multi-Core System-on-Chip}
+\section{Effective Post-Silicon Validation of System-on-Chips Using Quick Error Detection ~\cite{qed} }
 
+{\color{red} reading: ref 9 about priori and 46 for algorithm about software signature and flow checking}
+This paper introduced a method called Quick Error Detection (QED) for systematically creating test cases that can quickly detect bugs inside components.
+The advantage of QED is it has a much shorter error detection latencies and increase the bug coverage.
+The Fig.~\ref{fig1} shows the bug activation criteria and bug effects tables. Bug activation criteria is a set of conditions that mush be satisfied to activate a bug scenario. Bug effects is the resulting wrong behavior. Variable X, Y can be defined as any numbers with bound predefined.
+
+ QED systematically transforms original tests into new QED tests families.  New tests will have bounded error detection latency.
+ 
+ Methods: transformations:
+ \begin{itemize}
+ 
+ \item Error Detection Using Duplicated Instruction for Validation (EDDI-V)
+ 
+ Bound error detection latency for bugs inside processor cores. Duplicate instructions and registers, and with same instruction, check if the corresponding value are same. If not, error find.
+ 
+ \item PLC (for uncore components)
+ 
+ Insert special PLC operations at very fine granularities across memory (and I/O) spaces using targeted instructions. It does self checking on selected set of variables .
+ 
+ Compatible with EDDI-V
+ 
+ \item CFCSS-V and CFTSS-V (for core's control flow)
+ 
+ \begin{itemize}
+ \item CFCSS-V
+ 
+Checks the control flow of a test program during runtime against the control flow graph constructed during the test program?s compile time. Instead of checking between basic blocks, check between "blocks of instructions" that may contain arbitrary number of instructions (determined by $Inst\_min$ and $Inst\_max$) to balance trade offs between error detection latency and intrusiveness. Checking flow between every instruction will result in short error detection latency but increase the intrusiveness. While multiple blocks will lead to longer error detection latency.
+
+Basic Idea: each block of instructions is assigned a unique integer as software signature. {\color{red} Detail need to be read from another paper. }
+\item CFTSS-V
+ see fig.~\ref{cftss} {\color{red} confused}
+ \begin{figure}
+ \caption{Pseudo assembly code for the CFTSS-V operation inserted at the beginning of each ?block of instructions.?}
+\label{cftss}
+\centering
+    \includegraphics[width=0.4\textwidth]{cftss}
+\end{figure}
+\end{itemize}
+
+\item Comparison of QED transformations in fig.~\ref{comp}
+\begin{figure}
+ \caption{COMPARISON OF QED TRANSFORMATIONS}
+\label{comp}
+\centering
+    \includegraphics[width=0.4\textwidth]{comp}
+\end{figure}
+ \end{itemize}
+
+\begin{figure}
+\caption{bug activation criteria and bug effects}
+\label{fig1}
+\centering
+    \includegraphics[width=0.4\textwidth]{bug}
+\end{figure}
+
+
+
+\section{A Common Platform for bridging Pre- and Post-Silicon Verification in Mixed-Signal Designed ~/cite{commonplatform}}
+Motivation: majority of current verification is for digital or analog designs only. Great demand for new test technology to verify both digital and analog together. Physical bus increase due to the rising complexity of the interactions between analog and digital modules and smaller feature sizes.
+
+Advantagement: allows simulation test case reusing for post-silicon verification. Development of a bidirectional bridging approach. It's generic, can be applied to a lot areas.
+
+Concepts: 
+\begin{itemize}
+\item Exerciser runs on the DUV to create a simulator-like environment for post-si verification. Exerciser can generate test cases for pre-defined scenarios, run on target and auto checking. 
+\item directed tests: predefined, written by hand
+\item random tests: generated by transaction generators
+\item direct random tests: hybrid
+\end{itemize}
+
+Method detaisl: 
+\begin{itemize}
+\item veication activities need to be planned ahead. (determine objectivies, how to achieve them. Done seperately for pre and post sili, \color{red}{may cause problems})
+\item as showed in fig.~/ref{appr}
+\item Test cases will be written in scripting language (pearl or python) to allow a high level abstractionand option to store and process data. Also allows for all 3 types of test cases generation
+\item 
+\end{itemize}
+
+\begin{figure}
+ \caption{Basic Concept of the Proposed Approach}
+\label{appr}
+\centering
+    \includegraphics[width=0.5\textwidth]{appr}
+\end{figure}
+
+
+\section{Debugging Multi-Core System-on-Chip}
 \begin{itemize}	
 \item Introduction
 		Design of an SOC: slowly decrease the abstraction level by level, adding details iteratively until it's ready for fabrication.
@@ -202,61 +311,13 @@ Post silicon validation is very complex and effort intensive compared to pre-sil
 \fi
 
 
-
-% trigger a \newpage just before the given reference
-% number - used to balance the columns on the last page
-% adjust value as needed - may need to be readjusted if
-% the document is modified later
-%\IEEEtriggeratref{8}
-% The "triggered" command can be changed if desired:
-%\IEEEtriggercmd{\enlargethispage{-5in}}
-
-% references section
-
-% can use a bibliography generated by BibTeX as a .bbl file
-% BibTeX documentation can be easily obtained at:
-% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
-% The IEEEtran BibTeX style support page is at:
-% http://www.michaelshell.org/tex/ieeetran/bibtex/
 \bibliographystyle{IEEEtran}
-% argument is your BibTeX string definitions and bibliography database(s)
 \bibliography{bib}
-%
-% <OR> manually copy in the resultant .bbl file
-% set second argument of \begin to the number of references
-% (used to reserve space for the reference number labels box)
 
-% biography section
-% 
-% If you have an EPS/PDF photo (graphicx package needed) extra braces are
-% needed around the contents of the optional argument to biography to prevent
-% the LaTeX parser from getting confused when it sees the complicated
-% \includegraphics command within an optional argument. (You could create
-% your own custom macro containing the \includegraphics command to make things
-% simpler here.)
-%\begin{biography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
-% or if you just want to reserve a space for a photo:
 
 \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{picture}}]{John Doe}
 \blindtext
 \end{IEEEbiography}
-
-% You can push biographies down or up by placing
-% a \vfill before or after them. The appropriate
-% use of \vfill depends on what kind of text is
-% on the last page and whether or not the columns
-% are being equalized.
-
-%\vfill
-
-% Can be used to pull up biographies so that the bottom of the last one
-% is flush with the other column.
-%\enlargethispage{-5in}
-
-
-
-
-% that's all folks
 \end{document}
 
 

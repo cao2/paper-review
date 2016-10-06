@@ -45,4 +45,11 @@ Y.~Abarbanel, E.~Singerman, and M.~Y. Vardi, ``Validation of soc
   \url{http://doi.acm.org/10.1145/2593069.2596692}
 \BIBentrySTDinterwordspacing
 
+\bibitem{qed}
+D.~Lin, T.~Hong, Y.~Li, S.~Eswaran, S.~Kumar, F.~Fallah, N.~Hakim, D.~S.
+  Gardner, and S.~Mitra, ``Effective post-silicon validation of system-on-chips
+  using quick error detection,'' \emph{Computer-Aided Design of Integrated
+  Circuits and Systems, IEEE Transactions on}, vol.~33, no.~10, pp. 1573--1590,
+  2014.
+
 \end{thebibliography}
