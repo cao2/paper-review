@@ -22,14 +22,14 @@ Email: cao2@mail.usf.edu}
 Briefly summarize all the papers I read about post silicon validation.
 \end{abstract}
 
-
-\section{probablisitic bus-masking analysis for post-silicon tests in microprocessor verification}
+\section{microprofessor}
+\subsection{probablisitic bus-masking analysis for post-silicon tests in microprocessor verification}
 Provide an efficient, static bug-masking analysisi solution BugMAPI that tracks the information flow in a 
 test program and estimates the probability that bugs go undetected by the checking mechanisms in place
 in the post silicon platform.
 This one I thought can b e used as heuristic for singal selection, but turned out to be helpful for test generator.
-
-\section{Post-silicon validation of mulrtiprocessor memory consisitency~\cite{mammo2015post}}
+\section{memory}
+\subsection{Post-silicon validation of mulrtiprocessor memory consisitency~\cite{mammo2015post}}
 monitor the system memory acccess information by changing a small portion of the l1 cache and an extra samll hardware logic.
 The logged information will then be transfered to central memory to conduct analysis process.
 The method used to detect memory error is by constructing a graph representation of memory interactions, an cycle indicates an error.
@@ -40,11 +40,12 @@ Two limitations: lack of patches for mask-causing store instructions and false n
 System overview is shown in Figure.~\ref{systemoverview}
 \begin{figure}
 \includegraphics[width=0.5\textwidth]{systemoverview.png}
-\caption{System Overview. Each core is modified to track memory accesses.A portion of the L1 caches are temporarily reserved for logging memory accesses. A store counter is attached to each cache line to track the order of writes to the line. Finally, the analysis of the logged data is performed in software, which can be carried out on a processor/host available for the task.}
+\caption{System Overview. Each core is modified to track memory accesses.
+A portion of the L1 caches are temporarily reserved for logging memory accesses. A store counter is attached to each cache line to track the order of writes to the line. Finally, the analysis of the logged data is performed in software, which can be carried out on a processor/host available for the task.}
 \label{systemoverview}
 \end{figure}
-
-\section{Cant See the Forest for the Trees: State Restoration?s Limitations in Post-silicon Trace Signal Selection ~\cite{forestMa}}
+\section{overview}
+\subsection{Cant See the Forest for the Trees: State Restoration?s Limitations in Post-silicon Trace Signal Selection ~\cite{forestMa}}
 This paper proposed the the signal selection standard SSR(State Restoration Ratio) is not suitable for evaluating trace signal quality. It should be replaced by metric that allows good high-level behavioral coverage.
 
 SRR measures the number of design states reconstructed from the signals observed. SRR= number of signals observed and restored / number of observed signals. The reason why SSR is not optimal is because 
@@ -65,8 +66,8 @@ I don't think this algorithm is fit for my research since there are not much att
 
 
 
-
-\section{SYSTEM-LEVEL TRACE SIGNAL SELECTION FOR POST-SILICON DEBUG USING LINEAR PROGRAMMING}
+\section{trace based}
+\subsection{SYSTEM-LEVEL TRACE SIGNAL SELECTION FOR POST-SILICON DEBUG USING LINEAR PROGRAMMING}
 This paper propose to automate trace signal selection instead of manual selection due to the increasing complexity of the system. It use the functional coverage as a metric and choose the low-level signals that produce a good coverage. And gradually refine the solution to allow the best behavioral coverage. 
 
 This paper focus on the communications between IPs and try to maximize the coverage of each protocol messages.
@@ -120,8 +121,8 @@ As referred in Fig.~\ref{control}, we define all protocols and then find local a
 
 
 
-
-\section{On the cusp of a validation wall~\cite{validationWall}}
+\section{overview}
+\subsection{On the cusp of a validation wall~\cite{validationWall}}
 This paper goes through the definition of silicon validation and reason why it's important, together with the current techniques used for pre and post silicon validation.
 
 Validation is the activity of ensuring a product satisfies its reference specifications, runs with relevant software and hardware, and meets user expectations.
@@ -147,8 +148,8 @@ To ensure all cases covered by test generator in stead of single area.
 What I learned:
 Post silicon validation is very complex and effort intensive compared to pre-silicon validation. Not very automated, which is needed in scholar field.
 
-
-\section{Validation of SoC Firmware~Hardware Flows: Chanllenges and Solution Directions ~\cite{fw}}
+\section{bridge pre and post silicon}
+\subsection{Validation of SoC Firmware~Hardware Flows: Chanllenges and Solution Directions ~\cite{fw}}
 \begin{itemize}
 	\item Challenges of SoC firmware hardware flows
 	\item specification error found late in product life-cycle.
@@ -167,7 +168,8 @@ Post silicon validation is very complex and effort intensive compared to pre-sil
 				(A little confused)
 \end{itemize}
 
-\section{Effective Post-Silicon Validation of System-on-Chips Using Quick Error Detection ~\cite{qed} }
+\section{SOC debug}
+\subsection{Effective Post-Silicon Validation of System-on-Chips Using Quick Error Detection ~\cite{qed} }
 
 {\color{red} reading: ref 9 about priori and 46 for algorithm about software signature and flow checking}
 This paper introduced a method called Quick Error Detection (QED) for systematically creating test cases that can quickly detect bugs inside components.
@@ -224,8 +226,8 @@ Basic Idea: each block of instructions is assigned a unique integer as software 
 \end{figure}
 
 
-
-\section{A Common Platform for bridging Pre- and Post-Silicon Verification in Mixed-Signal Designed ~/cite{commonplatform}}
+\section{pre and post}
+\subsection{A Common Platform for bridging Pre- and Post-Silicon Verification in Mixed-Signal Designed ~/cite{commonplatform}}
 Motivation: majority of current verification is for digital or analog designs only. Great demand for new test technology to verify both digital and analog together. Physical bus increase due to the rising complexity of the interactions between analog and digital modules and smaller feature sizes.
 
 Advantagement: allows simulation test case reusing for post-silicon verification. Development of a bidirectional bridging approach. It's generic, can be applied to a lot areas.
@@ -253,8 +255,8 @@ Method detaisl:
     \includegraphics[width=0.5\textwidth]{appr}
 \end{figure}
 
-
-\section{Debugging Multi-Core System-on-Chip}
+\section{SOC}
+\subsection{Debugging Multi-Core System-on-Chip}
 \begin{itemize}	
 \item Introduction
 		Design of an SOC: slowly decrease the abstraction level by level, adding details iteratively until it's ready for fabrication.
